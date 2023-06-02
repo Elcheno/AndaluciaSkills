@@ -3,58 +3,49 @@ const setTask = (storage, task) => {
     clearField();
 }
 
-const loadTasks = (storage, parentNode) => {
-    let keys = Object.keys(storage);
-    console.log(keys);
+const loadTasks = (storage, parentNode, taskN, parentNodeDone, taskNDone) => {
+    let keys = Object.keys(storage).sort(function(a, b){return a - b});
+    keys = keys.map(parseToInt);
 
-    for(key of keys){
-        let task = JSON.parse(storage.getItem(key));
-        createTask(task, parentNode)
+    if(keys.length > 0){
+        key = keys[keys.length -1];
+        key++;
+    }else{
+        key = 1;
+    }
+
+    for(aux of keys){
+        let task = JSON.parse(storage.getItem(aux));
+        if(task.done === false){
+            createTask(storage, task, parentNode, taskN, parentNodeDone, taskNDone);
+        }else{
+            createTaskDone(storage, task, parentNode, taskN, parentNodeDone, taskNDone);
+        }
     }
 }
 
-const loadTask = (task, parentNode) =>{
-    createTask(task, parentNode);
-}
-
-const createTask = (task, parentNode) => {
-    let divTask = document.createElement('div');
-    let divTitle = document.createElement('div');
-    let titleTask = document.createElement('p');
-    let divDesc = document.createElement('div');
-    let descTask = document.createElement('p');
-    let divBottom = document.createElement('div');
-    let divDateTask = document.createElement('div');
-    let divBtnDone = document.createElement('div');
-    let dateTask = document.createElement('p');
-    let btnTask = document.createElement('p');
-
-    titleTask.innerHTML = task.title;
-    descTask.innerHTML = task.description;
-    dateTask.innerHTML = 'FECHA';
-    btnTask.innerHTML = 'BUTTONS'
-
-    divTask.classList.add('task');
-    divTitle.classList.add('titleTask');
-    divDesc.classList.add('descTask');
-    divBottom.classList.add('bottomTask');
-    divDateTask.classList.add('dateTask');
-    divBtnDone.classList.add('btn-done-Task');
-
-    divTask.appendChild(divTitle);
-    divTask.appendChild(divDesc);
-    divTask.appendChild(divBottom);
-    divTitle.appendChild(titleTask);
-    divDesc.appendChild(descTask);
-    divBottom.appendChild(divDateTask);
-    divBottom.appendChild(divBtnDone);
-    divDateTask.appendChild(dateTask);
-    divBtnDone.appendChild(btnTask);
-    parentNode.appendChild(divTask);
-
+const loadTask = (storage, task, parentNode, taskN, parentNodeDone, taskNDone) =>{
+    createTask(storage, task, parentNode, taskN, parentNodeDone, taskNDone);
 }
 
 const clearField = () => {
     taskTitle.value = '';
     taskDesc.value = '';
+    taskDate.value = '';
+}
+
+function parseToInt(str){
+    return parseInt(str);
+}
+
+const countTask = (storage, boolean) => {
+    let result = 0;
+    let keys = Object.keys(storage).sort(function(a, b){return a - b});
+    for(aux of keys){
+        let task = JSON.parse(storage.getItem(aux));
+        if(task.done === boolean){
+            result++;
+        }
+    }
+    return result;
 }

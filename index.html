@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Task Management</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
 
@@ -15,46 +16,58 @@
             </div>
         </div>
 
-        <div class="container">
-            <div class="form">
-                <input type="text" placeholder="task" class="taskTitle">
-                <input type="text" placeholder="description" class="taskDesc">
-                <button class="btnAddTask" onclick="addTask()">Add Task</button>
+        <div class="container row">
+
+            <div>
+                <div class="taskList">
+                    <div class="nTask">
+                        <p class="taskN">0</p>
+                    </div>
+                    <div class="list parentNode"></div>
+                    <hr>
+                    <div class="task taskTemplate">
+                        <div class="titleTask">
+                            <input type="text" placeholder="title" maxlength="30" class="taskTitle">
+                        </div>
+
+                        <div class="descTask">
+                            <textarea cols="36" rows="5" maxlength="90" placeholder="description" class="taskDesc"></textarea>
+                        </div>
+
+                        <div class="bottomTask">
+                            <div class="dateTask">
+                                <input type="date" class="taskDate">
+                            </div>
+                            <div class="btn-done-Task btnTemplate">
+                                <span class="material-symbols-outlined">delete</span>
+                                <span class="material-symbols-outlined">edit</span>
+                                <span class="material-symbols-outlined">done</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="btnAddTask">
+                        <span class="material-symbols-outlined showAddTask" onclick="showAddTask()">add</span>
+                        <span class="material-symbols-outlined cancelAddTask" onclick="cancelAddTask()">close</span>
+                        <span class="material-symbols-outlined addTask" onclick="addTask()">save</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="taskListDone">
+                    <div class="nTaskDone">
+                        <p class="taskNDone">0</p>
+                    </div>
+                    <div class="list parentNodeDone"></div>
+                </div>
             </div>
         </div>
 
-        <div class="container">
-            <div class="taskList">
 
-                <div class="nTask">
-                    <p>0</p>
-                </div>
-
-                <div class="task">
-                    <div class="titleTask">
-                        <p>Titulo</p>
-                    </div>
-
-                    <div class="descTask">
-                        <p>Description</p>
-                    </div>
-
-                    <div class="bottomTask">
-                        <div class="dateTask">
-                            <p>fecha</p>
-                        </div>
-                        <div class="btn-done-Task">
-                            <p>button</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
 
     </div>
-
+    <script src="./js/createTask.js"></script>
     <script src="./js/functions.js"></script>
     <script src="./js/main.js"></script>
 </body>
