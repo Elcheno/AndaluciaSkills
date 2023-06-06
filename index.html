@@ -22,8 +22,9 @@
                 <div class="taskList">
                     <div class="nTask">
                         <p class="taskN">0</p>
+                        <p class="titleList">Task List</p>
                     </div>
-                    <div class="list parentNode"></div>
+                    <div class="list parentNode"></div> <!-- CONTENEDOR DE TAREAS -->
                     <hr>
                     <div class="task taskTemplate">
                         <div class="titleTask">
@@ -50,6 +51,7 @@
                         <span class="material-symbols-outlined showAddTask" onclick="showAddTask()">add</span>
                         <span class="material-symbols-outlined cancelAddTask" onclick="cancelAddTask()">close</span>
                         <span class="material-symbols-outlined addTask" onclick="addTask()">save</span>
+                        <span class="material-symbols-outlined updateTask" onclick="updateTask()">save_as</span>
                     </div>
                 </div>
             </div>
@@ -58,15 +60,17 @@
                 <div class="taskListDone">
                     <div class="nTaskDone">
                         <p class="taskNDone">0</p>
+                        <p class="titleList">Task Completed</p>
                     </div>
-                    <div class="list parentNodeDone"></div>
+                    <div class="list parentNodeDone"></div> <!-- CONTENEDOR DE TAREAS -->
                 </div>
             </div>
         </div>
 
-
-
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.11/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.11/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="./js/createTask.js"></script>
     <script src="./js/functions.js"></script>
     <script src="./js/main.js"></script>
