@@ -29,15 +29,25 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: rgba(20, 67, 126, 0.9);
+    /*background-color: rgba(20, 67, 126, 0.9);*/
+    background-color: #14437d;
     height: 7vh;
 }
 
-.header .title{
-    align-self: center;
-    margin: 0 2rem;
-    color: rgba(255, 255, 255, 0.8);
+.header .logo{
+    height: 100%;
+    width: 100%;
+    background-image: url("../img/logo.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 20rem;
 }
+
+/*.header .title{*/
+/*    align-self: center;*/
+/*    margin: 0 2rem;*/
+/*    color: rgba(255, 255, 255, 0.8);*/
+/*}*/
 
 .container{
     width: 95vw;

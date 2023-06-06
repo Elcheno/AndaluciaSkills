@@ -32,9 +32,21 @@ const createTask = (storage, task, parentNode, taskN, parentNodeDone, taskNDone)
     btnDoneTask.classList.add('material-symbols-outlined');
 
     btnRemoveTask.onclick = () => {
-        storage.removeItem(task.id);
-        divTask.remove();
-        taskN.innerHTML = countTask(storage, false);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                storage.removeItem(task.id);
+                divTask.remove();
+                taskN.innerHTML = countTask(storage, false);
+            }
+        })
     }
 
     btnDoneTask.onclick = () => {
@@ -99,9 +111,21 @@ const createTaskDone = (storage, task, parentNode, taskN, parentNodeDone, taskND
     btnCancelTask.classList.add('material-symbols-outlined');
 
     btnRemoveTask.onclick = () => {
-        storage.removeItem(task.id);
-        divTask.remove();
-        taskNDone.innerHTML = countTask(storage, true);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                storage.removeItem(task.id);
+                divTask.remove();
+                taskNDone.innerHTML = countTask(storage, true);
+            }
+        })
     }
 
     btnCancelTask.onclick = () => {
