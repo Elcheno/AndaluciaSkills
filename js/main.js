@@ -18,6 +18,28 @@ let storage = window.localStorage;
 let key;
 let keyUpdated;
 
+let timerInterval;
+
+
+Swal.fire({
+    title: 'Loading Tasks',
+    timer: nLoader(),
+    timerProgressBar: true,
+    didOpen: () => {
+        Swal.showLoading()
+    },
+    willClose: () => {
+        clearInterval(timerInterval)
+    }
+}).then((result) => {
+    if (result.dismiss === Swal.DismissReason.timer) {
+        taskN.innerHTML = countTask(storage, false);
+        taskNDone.innerHTML = countTask(storage, true);
+        loadTasks(storage, taskList, taskN, taskListDone, taskNDone);
+    }
+})
+
+
 function addTask(){
     task = {
         id: key,
@@ -45,13 +67,7 @@ function updateTask() {
     cancelAddTask();
     clearTasks();
     loadTasks(storage, taskList, taskN, taskListDone, taskNDone);
-    // taskN.innerHTML = countTask(storage, false);
-    // loadTask(storage, task, taskList, taskN, taskListDone, taskNDone);
 }
-
-taskN.innerHTML = countTask(storage, false);
-taskNDone.innerHTML = countTask(storage, true);
-loadTasks(storage, taskList, taskN, taskListDone, taskNDone);
 
 function showAddTask() {
     btnShowAddTask.style.display = 'none';
@@ -87,3 +103,20 @@ function clearTasks() {
         taskListDone.removeChild(childrenDone[0]);
     }
 }
+
+function nLoader(){
+    if(storage.length === 0){
+        return Math.random()*500;
+    }
+    else if(storage.length <= 5 ){
+        return Math.random()*1000;
+    }
+    else if(storage.length <= 10 ){
+        return Math.random()*5000;
+    }
+    else if(storage.length > 10 ){
+        return Math.random()*10000;
+    }
+}
+
+
