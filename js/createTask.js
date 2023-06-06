@@ -21,7 +21,7 @@ const createTask = (storage, task, parentNode, taskN, parentNodeDone, taskNDone)
     btnDoneTask.innerHTML = 'done';
 
 
-    divTask.classList.add('task');
+    divTask.classList.add('task', 'scale-up-center');
     divTitle.classList.add('titleTask');
     divDesc.classList.add('descTask');
     divBottom.classList.add('bottomTask');
@@ -44,6 +44,14 @@ const createTask = (storage, task, parentNode, taskN, parentNodeDone, taskNDone)
         taskN.innerHTML = countTask(storage, false);
         taskNDone.innerHTML = countTask(storage, true);
         createTaskDone(storage, task, parentNode, taskN, parentNodeDone, taskNDone);
+    }
+
+    btnEditTask.onclick = () => {
+        taskTitle.value = task.title;
+        taskDesc.value = task.description;
+        taskDate.value = task.date;
+        keyUpdated = task.id;
+        showUpdateTask();
     }
 
 
@@ -73,24 +81,21 @@ const createTaskDone = (storage, task, parentNode, taskN, parentNodeDone, taskND
     let divBtnDone = document.createElement('div');
     let dateTask = document.createElement('p');
     let btnRemoveTask = document.createElement('span');
-    let btnEditTask = document.createElement('span');
     let btnCancelTask = document.createElement('span');
 
     titleTask.innerHTML = task.title;
     descTask.innerHTML = task.description;
     dateTask.innerHTML = task.date;
     btnRemoveTask.innerHTML = 'delete';
-    btnEditTask.innerHTML = 'edit';
     btnCancelTask.innerHTML = 'close';
 
-    divTask.classList.add('task');
+    divTask.classList.add('task', 'scale-up-center');
     divTitle.classList.add('titleTask');
     divDesc.classList.add('descTask');
     divBottom.classList.add('bottomTask');
     divDateTask.classList.add('dateTask');
     divBtnDone.classList.add('btn-done-Task');
     btnRemoveTask.classList.add('material-symbols-outlined');
-    btnEditTask.classList.add('material-symbols-outlined');
     btnCancelTask.classList.add('material-symbols-outlined');
 
     btnRemoveTask.onclick = () => {
@@ -117,7 +122,6 @@ const createTaskDone = (storage, task, parentNode, taskN, parentNodeDone, taskND
     divBottom.appendChild(divBtnDone);
     divDateTask.appendChild(dateTask);
     divBtnDone.appendChild(btnRemoveTask);
-    divBtnDone.appendChild(btnEditTask);
     divBtnDone.appendChild(btnCancelTask);
     parentNodeDone.appendChild(divTask);
 }
