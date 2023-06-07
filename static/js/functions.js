@@ -49,3 +49,9 @@ const countTask = (storage, boolean) => {
     }
     return result;
 }
+
+function clearEvents() {
+    while(cal.getEvents.length > 0) {
+        cal.removeEvent(cal.getEvents[0]);
+    }
+}
