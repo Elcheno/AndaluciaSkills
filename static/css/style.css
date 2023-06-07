@@ -97,6 +97,10 @@ body{
     align-items: center;
 }
 
+.task-pointer:hover{
+    cursor: pointer;
+}
+
 .titleTask{
     width: 100%;
     height: 2rem;
@@ -194,6 +198,11 @@ hr {
     border-radius: 10px;
 }
 
+.date-old{
+    color: rgb(227, 54, 54);
+    font-weight: bold;
+}
+
 
 @media only screen and (max-width: 767px) {
     .header .logo{
@@ -232,7 +241,7 @@ hr {
     }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1366px) {
     .row{
         flex-direction: row;
         flex-wrap: nowrap;
