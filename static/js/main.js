@@ -66,6 +66,7 @@ function updateTask() {
     setTask(storage, task);
     cancelAddTask();
     clearTasks();
+    cal.setEvents();
     loadTasks(storage, taskList, taskN, taskListDone, taskNDone);
 }
 
@@ -119,4 +120,7 @@ function nLoader(){
     }
 }
 
-
+cal = mobiscroll.eventcalendar('#eventcalendar', {
+    theme: 'ios',
+    themeVariant: 'light',
+});

@@ -5,6 +5,8 @@
     <title>Task Management</title>
     <link rel="stylesheet" href="./static/css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="./static/calendar/css/mobiscroll.javascript.min.css" rel="stylesheet" />
+    <script src="./static/calendar/js/mobiscroll.javascript.min.js"></script>
 </head>
 <body>
 
@@ -64,14 +66,21 @@
                     <div class="list parentNodeDone"></div> <!-- CONTENEDOR DE TAREAS -->
                 </div>
             </div>
+
+            <div class="calendar">
+                <div id="eventcalendar"></div>
+            </div>
+
         </div>
+
+
 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.11/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.11/dist/sweetalert2.min.css" rel="stylesheet">
-    <script src="./js/createTask.js"></script>
-    <script src="./js/functions.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="./static/js/createTask.js"></script>
+    <script src="./static/js/functions.js"></script>
+    <script src="./static/js/main.js"></script>
 </body>
 </html>

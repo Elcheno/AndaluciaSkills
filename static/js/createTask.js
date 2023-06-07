@@ -12,6 +12,12 @@ const createTask = (storage, task, parentNode, taskN, parentNodeDone, taskNDone)
     let btnEditTask = document.createElement('span');
     let btnDoneTask = document.createElement('span');
 
+    dateEvent = new Date(task.date);
+    let event = {
+        title: task.title.toString(),
+        start: new Date(dateEvent.getFullYear(), dateEvent.getMonth(), dateEvent.getDate()),
+        end: new Date(dateEvent.getFullYear(), dateEvent.getMonth(), dateEvent.getDate()),
+    };
 
     titleTask.innerHTML = task.title;
     descTask.innerHTML = task.description;
@@ -19,7 +25,6 @@ const createTask = (storage, task, parentNode, taskN, parentNodeDone, taskNDone)
     btnRemoveTask.innerHTML = 'delete';
     btnEditTask.innerHTML = 'edit';
     btnDoneTask.innerHTML = 'done';
-
 
     divTask.classList.add('task', 'scale-up-center');
     divTitle.classList.add('titleTask');
@@ -45,6 +50,7 @@ const createTask = (storage, task, parentNode, taskN, parentNodeDone, taskNDone)
                 storage.removeItem(task.id);
                 divTask.remove();
                 taskN.innerHTML = countTask(storage, false);
+                cal.removeEvent(event);
             }
         })
     }
@@ -56,6 +62,7 @@ const createTask = (storage, task, parentNode, taskN, parentNodeDone, taskNDone)
         taskN.innerHTML = countTask(storage, false);
         taskNDone.innerHTML = countTask(storage, true);
         createTaskDone(storage, task, parentNode, taskN, parentNodeDone, taskNDone);
+        cal.removeEvent(event);
     }
 
     btnEditTask.onclick = () => {
@@ -65,7 +72,6 @@ const createTask = (storage, task, parentNode, taskN, parentNodeDone, taskNDone)
         keyUpdated = task.id;
         showUpdateTask();
     }
-
 
     divTask.appendChild(divTitle);
     divTask.appendChild(divDesc);
@@ -80,6 +86,7 @@ const createTask = (storage, task, parentNode, taskN, parentNodeDone, taskNDone)
     divBtnDone.appendChild(btnDoneTask);
     parentNode.appendChild(divTask);
 
+    cal.addEvent(event);
 }
 
 const createTaskDone = (storage, task, parentNode, taskN, parentNodeDone, taskNDone) => {
@@ -94,6 +101,14 @@ const createTaskDone = (storage, task, parentNode, taskN, parentNodeDone, taskND
     let dateTask = document.createElement('p');
     let btnRemoveTask = document.createElement('span');
     let btnCancelTask = document.createElement('span');
+
+    dateEvent = new Date(task.date);
+    let event = {
+        title: task.title.toString(),
+        color: '#00ff00',
+        start: new Date(dateEvent.getFullYear(), dateEvent.getMonth(), dateEvent.getDate()),
+        end: new Date(dateEvent.getFullYear(), dateEvent.getMonth(), dateEvent.getDate()),
+    };
 
     titleTask.innerHTML = task.title;
     descTask.innerHTML = task.description;
@@ -124,6 +139,7 @@ const createTaskDone = (storage, task, parentNode, taskN, parentNodeDone, taskND
                 storage.removeItem(task.id);
                 divTask.remove();
                 taskNDone.innerHTML = countTask(storage, true);
+                cal.removeEvent(event);
             }
         })
     }
@@ -135,6 +151,7 @@ const createTaskDone = (storage, task, parentNode, taskN, parentNodeDone, taskND
         taskN.innerHTML = countTask(storage, false);
         taskNDone.innerHTML = countTask(storage, true);
         createTask(storage, task, parentNode, taskN, parentNodeDone, taskNDone);
+        cal.removeEvent(event);
     }
 
     divTask.appendChild(divTitle);
@@ -148,4 +165,6 @@ const createTaskDone = (storage, task, parentNode, taskN, parentNodeDone, taskND
     divBtnDone.appendChild(btnRemoveTask);
     divBtnDone.appendChild(btnCancelTask);
     parentNodeDone.appendChild(divTask);
+
+    cal.addEvent(event);
 }
