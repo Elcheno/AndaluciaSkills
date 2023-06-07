@@ -20,6 +20,8 @@ let keyUpdated;
 
 let timerInterval;
 
+let dateNow = new Date();
+dateNow.setHours(0, 0, 0, 0);
 
 Swal.fire({
     title: 'Loading Tasks',

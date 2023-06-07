@@ -13,11 +13,30 @@ const createTask = (storage, task, parentNode, taskN, parentNodeDone, taskNDone)
     let btnDoneTask = document.createElement('span');
 
     dateEvent = new Date(task.date);
+    dateEvent.setHours(0, 0, 0, 0);
     let event = {
         title: task.title.toString(),
         start: new Date(dateEvent.getFullYear(), dateEvent.getMonth(), dateEvent.getDate()),
         end: new Date(dateEvent.getFullYear(), dateEvent.getMonth(), dateEvent.getDate()),
+
     };
+
+    if(task.date != 0){
+        divTask.classList.add('task-pointer');
+        divTask.onclick = () => {
+            cal.navigateToEvent(event);
+        }
+
+        if(dateEvent < dateNow){
+            divDateTask.classList.add('date-old');
+            event = {
+                title: task.title.toString(),
+                start: new Date(dateEvent.getFullYear(), dateEvent.getMonth(), dateEvent.getDate()),
+                end: new Date(dateEvent.getFullYear(), dateEvent.getMonth(), dateEvent.getDate()),
+                color: '#E33636FF',
+            };
+        }
+    }
 
     titleTask.innerHTML = task.title;
     descTask.innerHTML = task.description;
@@ -35,6 +54,7 @@ const createTask = (storage, task, parentNode, taskN, parentNodeDone, taskNDone)
     btnRemoveTask.classList.add('material-symbols-outlined');
     btnEditTask.classList.add('material-symbols-outlined');
     btnDoneTask.classList.add('material-symbols-outlined');
+
 
     btnRemoveTask.onclick = () => {
         Swal.fire({
@@ -109,6 +129,13 @@ const createTaskDone = (storage, task, parentNode, taskN, parentNodeDone, taskND
         start: new Date(dateEvent.getFullYear(), dateEvent.getMonth(), dateEvent.getDate()),
         end: new Date(dateEvent.getFullYear(), dateEvent.getMonth(), dateEvent.getDate()),
     };
+
+    if(task.date != 0) {
+        divTask.classList.add('task-pointer');
+        divTask.onclick = () => {
+            cal.navigateToEvent(event);
+        }
+    }
 
     titleTask.innerHTML = task.title;
     descTask.innerHTML = task.description;
